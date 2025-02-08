@@ -31,7 +31,7 @@ with DAG(
         kubernetes_conn_id="k8s_conn",
         image="louilat/aavev3-raw-balances-collector",
         name="raw_balances_collection",
-        task_id="task-two",
+        task_id="task-three",
         is_delete_operator_pod=True,
         get_logs=True,
     )
