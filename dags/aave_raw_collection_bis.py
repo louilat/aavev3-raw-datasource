@@ -3,7 +3,7 @@ from airflow import DAG
 from datetime import datetime
 
 with DAG(
-    dag_id="aavev3-raw-collection",
+    dag_id="aavev3-raw-collection-bis",
     start_date=datetime(2025, 3, 30),
 ) as dag:
     events_collector = DockerOperator(
