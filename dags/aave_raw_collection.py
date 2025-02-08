@@ -6,13 +6,11 @@ from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import (
 
 with DAG(
     dag_id="aavev3-raw-collection",
-    schedule="@once",
     start_date=datetime(2025, 3, 30),
 ) as dag:
     events_collector = KubernetesPodOperator(
         namespace="projet-datalab-group-jprat",
         image="louilat/aavev3-raw-events-collector",
-        cmds=["python3", "main_etl.py"],
         name="raw_events_collection",
         task_id="task-one",
         is_delete_operator_pod=True,
@@ -22,7 +20,6 @@ with DAG(
     events_decoder = KubernetesPodOperator(
         namespace="projet-datalab-group-jprat",
         image="louilat/aavev3-raw-events-decoder",
-        cmds=["python3", "main_etl.py"],
         name="raw_events_decoding",
         task_id="task-two",
         is_delete_operator_pod=True,
@@ -32,7 +29,6 @@ with DAG(
     balances_collector = KubernetesPodOperator(
         namespace="projet-datalab-group-jprat",
         image="louilat/aavev3-raw-balances-collector",
-        cmds=["python3", "main_etl.py"],
         name="raw_balances_collection",
         task_id="task-three",
         is_delete_operator_pod=True,
